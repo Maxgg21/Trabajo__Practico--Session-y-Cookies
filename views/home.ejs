@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>session</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    
+    </head>
+  <body class="d-flex justify-content-center m-5"> 
+    <main class="w-50 p-5 d-flex flex-column  rounded-2 border border-primary bg-info">
+      <div>
+        <% if(locals.user) { %>
+          <style>
+            body {
+              background-color: <%= session.user.colorSelecionado ? session.user.colorSelecionado : null %>;
+            }
+          </style>    
+          <h1 class="text-center m-1 text-light fw-bolder">Mil gracias por Visitarnos: <br>  <%= locals.user.nombreUsuario %></h1>
+          <br>
+          <p class="text-center m-1 text-light fw-bolder">Color : <%= locals.user.colorSelecionado %> </p>
+          <br>
+          <p class="text-center m-1 text-light fw-bolder">Email: <%= locals.user.emailUsuario %></p>
+          <br>
+          <p class="text-center m-1 text-light fw-bolder">Edad: <%= locals.user.edadUsuario%> años</p>
+          <div class="d-flex justify-content-center m-3">
+            <button type="submit" class="btn btn-primary ">
+              <a href="/" class="text-decoration-none text-light">Volver al principio</a>
+            </button>
+          </div>
+          <div class="d-flex justify-content-center m-3">
+            <form action="" method="post" class="">
+              <a href="olvidar" class="text-decoration-none">
+                <button class="btn btn-primary" type="submit">
+                    Olvidar color
+                </button>
+              </a>
+            </form>
+          </div>
+        <% } %>
+
+      </div>
+    </main>
+  </body>
+</html>

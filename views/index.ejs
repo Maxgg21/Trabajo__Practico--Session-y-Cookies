@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>session2</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"> 
+    
+  </head>
+    <body class="w-auto p-3 h-auto d-flex justify-content-center align-items-center" id="fondo">
+    
+    <% if(locals.user) { %>
+      <style>
+        body {
+          background-color: <%= session.user.colorSelecionado ? session.user.colorSelecionado : null %>;
+        }
+      </style>  
+      <h1 class="text-light fw-bolder">Mil gracias por Visitarnos: <%= session.user.nombreUsuario %></h1>
+
+      <div>
+        <button class="btn btn-primary bg-info m-3" type="submit"> 
+          <a href="/home" class="text-decoration-none">Mis Datos</a>
+        </button>
+      </div>
+
+    <% } else {%>
+      <main class=" w-50 p-5 d-flex flex-column  rounded-2 border border-primary bg-info text-light">
+         
+        <h3 class="userTitle">Coloque sus datos Aqui:</h3>
+        <form action="" method="POST" class="col" novalidate >
+  
+            <div class="col-12 mb-2 ">
+                <input type="text" name="nombreUsuario" placeholder="Ingrese su nombre" class="form-control" value="<%= locals.old && locals.old.name ? locals.old.name : null%>">
+                <small class="text-danger ms-3"><%= locals.errors && errors.nombreUsuario ? errors.nombreUsuario.msg : null%></small>
+            </div>
+  
+            <div class="col-12 mb-2">
+              <input type="email" name="emailUsuario" placeholder="Ingresá su email" class="form-control" value="<%= locals.old && locals.old.emailUsuario ? locals.old.emailUsuario : null%>">
+              <small class="text-danger ms-3"><%= locals.errors && errors.emailUsuario ? errors.emailUsuario.msg : null%></small> 
+            </div>
+  
+            <div class="col-12 mb-2">
+                <input type="number" name="edadUsuario" placeholder="Ingrese su edad" class="form-control " value="<%= locals.old && locals.old.edadUsuario ? locals.old.edadUsuario : null%>">
+                <small class="text-danger ms-3"><%= locals.errors && errors.edadUsuario ? errors.edadUsuario.msg : null%></small>
+            </div>
+  
+            <div class="col-12 mb-2 ">
+                <label for="colorSelecionado">color :</label>
+                <input type="color" name="colorSelecionado" id="colorSelecionado">
+            </div>
+  
+            <div class="col-12 mb-2 ">
+                <input type="checkbox" name="check" id="check">
+                <label for="check">RECORDAR COLOR</label>
+            </div>
+            
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="col-6 mb-2 btn btn-primary "  onclick="setStyle">
+                  Ingresar
+              </button>
+            </div>
+            
+        </form>
+    </main>
+    <% } %>
+  </body>
+  <script type="text/javaScripts" src="javaScripts/color.js"></script>
+</html>
